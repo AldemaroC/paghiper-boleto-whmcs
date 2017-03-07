@@ -21,5 +21,16 @@ function httpPost($url,$params)
 
 $boleto = httpPost("https://www.paghiper.com/checkout/",$paramsboleto);
 
+$command = 'SendEmail';
+$postData = array(
+    			'custommessage' => $boleto,
+			'customsubject' => 'Novo boleto de pagemento gerado',
+		);
+$adminUsername = 'admin';
+
+$enviaemail = localAPI($command, $postData, $adminUsername);
+
+print_r($enviaemail);
+
 echo $boleto;
 ?>
